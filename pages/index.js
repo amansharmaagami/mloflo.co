@@ -7,7 +7,7 @@ export default function Home() {
 	return (
 		<div>
 			<Head>
-				<title>mloflo.co</title>
+				<title>mloflo.ml</title>
 				<meta name="description" content="A simple disposable email system" />
 				<link rel="icon" href="/favicon.ico" />
 			</Head>

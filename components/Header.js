@@ -9,7 +9,7 @@ export default function Header() {
 
 	function handleSubmit(e) {
 		e.preventDefault();
-		Router.push("/inbox/" + inbox);
+		Router.push("/inbox/" + inbox.toLowerCase());
 		setIsMenuOpen(false);
 	}
 
