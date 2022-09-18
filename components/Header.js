@@ -7,9 +7,14 @@ export default function Header() {
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
 	const [inbox, setInbox] = useState("");
 
+	function handleInboxInputChange (e) {
+		const value = e.target.value || '';
+		setInbox(value.toLowerCase());
+	}
+
 	function handleSubmit(e) {
 		e.preventDefault();
-		Router.push("/inbox/" + inbox.toLowerCase());
+		Router.push("/inbox/" + inbox);
 		setIsMenuOpen(false);
 	}
 
@@ -96,7 +101,7 @@ export default function Header() {
 									type="text"
 									placeholder="view-this-inbox"
 									value={inbox}
-									onChange={(e) => setInbox(e.target.value)}
+									onChange={handleInboxInputChange}
 								/>
 								<button
 									type="submit"
@@ -205,7 +210,7 @@ export default function Header() {
 												type="text"
 												placeholder="view-this-inbox"
 												value={inbox}
-												onChange={(e) => setInbox(e.target.value)}
+												onChange={handleInboxInputChange}
 											/>
 											<button
 												type="submit"
