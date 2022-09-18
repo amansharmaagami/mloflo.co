@@ -1,7 +1,9 @@
+import addressParser from 'address-rfc2822';
+
 import db from "../../../utils/db";
 import Mail from "../../../models/Mail";
+import Log from "../../../models/Log";
 import multer from "multer";
-import addressParser from 'address-rfc2822';
 
 const storage = multer.memoryStorage();
 
@@ -37,6 +39,16 @@ export default async function handler(req, res) {
 			await Mail.create({
 				...req.body,
 				to
+			});
+
+			/**
+			 * Logging every email for reports which inbox are used most
+			 * and which are the most email are coming from
+			 */
+			Log.create({
+				to,
+				from: req.body.from,
+				type: 'mail'
 			});
 		}
 	}

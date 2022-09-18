@@ -1,5 +1,6 @@
 import db from "../../../utils/db";
 import Mail from "../../../models/Mail";
+import Log from "../../../models/Log";
 
 export default async function handler(req, res) {
 	if (req.method !== "GET") {
@@ -12,4 +13,12 @@ export default async function handler(req, res) {
 	});
 
 	res.send(mails);
+
+	/**
+	 * Logging which inboxs are viewed most
+	 */
+	Log.create({
+		to: req.query.inbox,
+		type: 'view',
+	});
 }
