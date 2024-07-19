@@ -286,7 +286,7 @@ export default function Landing() {
 							Designed for business teams like yours
 						</h2>
 						<p className="text-gray-500 sm:text-xl dark:text-gray-400">
-							Here at mloflo.ml we focus on markets where technology,
+							Here at maildump.in we focus on markets where technology,
 							innovation, and capital can unlock long-term value and drive
 							economic growth.
 						</p>

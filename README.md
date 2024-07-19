@@ -1,2 +1,3 @@
-# mloflo.co
+# maildump.in
+
 A disposable email system
