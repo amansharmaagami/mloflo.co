@@ -13,7 +13,7 @@ const upload = multer({
 });
 
 export const config = {
-    api: { bodyParser: false },
+    api: { bodyParser: true },
 };
 
 export default async function handler(req, res) {
