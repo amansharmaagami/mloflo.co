@@ -25,7 +25,7 @@ export default async function handler(req, res) {
 
     await db();
 
-    const { to, cc, html, subject, text, messageId, date } = req.body;
+    const { to, cc, from, html, subject, text, messageId, date } = req.body;
 
     const emails = [];
 
@@ -51,6 +51,7 @@ export default async function handler(req, res) {
                 text,
                 date,
                 messageId,
+                from: from?.text,
             });
 
             /**
@@ -59,7 +60,7 @@ export default async function handler(req, res) {
              */
             Log.create({
                 to,
-                from: req.body.from?.text,
+                from: from?.text,
                 type: "mail",
             });
         }
