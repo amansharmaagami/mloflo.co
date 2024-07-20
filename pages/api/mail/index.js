@@ -27,6 +27,11 @@ export default async function handler(req, res) {
 
     await db();
 
+
+    res.status(201).send();
+
+    return console.log(req.body);
+
     const { to: emailList } = req.body;
     // Here emailList is string contains email addresses separated by comma
 
