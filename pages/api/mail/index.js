@@ -1,5 +1,3 @@
-import addressParser from "address-rfc2822";
-
 import db from "../../../utils/db";
 import Mail from "../../../models/Mail";
 import Log from "../../../models/Log";
@@ -27,22 +25,32 @@ export default async function handler(req, res) {
 
     await db();
 
+    const { to, cc, html, subject, text, messageId, date } = req.body;
 
-    res.status(201).send();
+    const emails = [];
 
-    return console.log(req.body);
+    if (to?.value) {
+        emails.push(...to.value);
+    }
 
-    const { to: emailList } = req.body;
+    if (cc?.value) {
+        emails.push(...cc.value);
+    }
+
     // Here emailList is string contains email addresses separated by comma
 
-    for (let email of emailList.split(",")) {
-        let [{ address: to }] = addressParser.parse(email);
-        to = to.toLowerCase();
+    for (let { address } of emails) {
+
+        let to = address?.toLowerCase();
 
         if (to.split("@").pop() === process.env.DOMAIN) {
             await Mail.create({
-                ...req.body,
                 to,
+                html,
+                subject,
+                text,
+                date,
+                messageId,
             });
 
             /**
@@ -51,7 +59,7 @@ export default async function handler(req, res) {
              */
             Log.create({
                 to,
-                from: req.body.from,
+                from: req.body.from?.text,
                 type: "mail",
             });
         }

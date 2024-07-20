@@ -18,15 +18,18 @@ const mailSchema = new Schema(
 			type: String,
 			required: true,
 		},
-		sender_ip: {
-			type: String,
-		},
 		text: {
 			type: String,
 		},
 		html: {
 			type: String,
 		},
+		messageId: {
+			type: String,
+		},
+		date: {
+			type: Date,
+		}
 	},
 	{ timestamps: true }
 );
