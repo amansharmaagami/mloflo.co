@@ -5,6 +5,7 @@ const mailSchema = new Schema(
 		_inbox: {
 			type: String,
 			select: false,
+			index: true,
 		},
 		to: {
 			type: String,
@@ -34,7 +35,6 @@ const mailSchema = new Schema(
 	{ timestamps: true }
 );
 
-mailSchema.index({ createdAt: 1 }, { expireAfterSeconds: 7200 });
 
 mailSchema.pre("save", async function () {
 	if (this.isNew) {
